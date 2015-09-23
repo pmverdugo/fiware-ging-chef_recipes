@@ -1,17 +1,18 @@
 Description
 ===========
 
-Installs .
+Installs fiware-idm.
 
 Requirements
 ============
 
+Ubuntu 14.04
 Chef must be installed.
 
 Attributes
 ==========
 
-node['app_dir'] contains the path to install
+node[fiware-idm]['app_dir'] contains the path to install
 
 Usage
 =====
