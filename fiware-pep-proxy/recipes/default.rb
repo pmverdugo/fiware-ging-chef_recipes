@@ -8,7 +8,7 @@ end
 
 bash :get_system do
   code <<-EOH
-    cd /opt
+    cd /opt && \
     sudo git clone https://github.com/ging/fiware-pep-proxy.git && \
     cd  #{node['fiware-pep-proxy'][:app_dir]}&& \
     sudo npm install &&\
