@@ -37,9 +37,9 @@ end
 
 # Install python dependecies
 bash :install_pydems do
-  apppath =  node[fiware-idm][:app_dir]
+  apppath =  node['fiware-idm'][:app_dir]
   code <<-EOH
-    cd #{node.default[:app_dir]}
+    cd #{apppath}
     source /usr/local/bin/virtualenvwrapper.sh && \
     mkvirtualenv idm_tools && \
     pip install -r requirements.txt
