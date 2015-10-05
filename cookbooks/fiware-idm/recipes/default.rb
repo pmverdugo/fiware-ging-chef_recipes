@@ -29,8 +29,8 @@ end
 # Download latest version of the code
 bash :download_version do
   code <<-EOH
-    git clone https://github.com/ging/fiware-idm idm && \
-    cd idm && \
+    git clone https://github.com/ging/fiware-idm #{node['fiware-idm'][:app_dir]} && \
+    cd #{node['fiware-idm'][:app_dir]} && \
     cp conf/settings.py.example conf/settings.py
   EOH
 end
@@ -38,7 +38,7 @@ end
 # Install python dependecies
 bash :install_pydeps do
   code <<-EOH
-    cd #{node['fiware-idm'][:app_dir]}
+    cd #{node['fiware-idm'][:app_dir]} && \
     source /usr/local/bin/virtualenvwrapper.sh && \
     mkvirtualenv idm_tools && \
     pip install -r requirements.txt
@@ -49,6 +49,7 @@ end
 # Install Keystone backend
 bash :install_keystone do
   code <<-EOH
+    cd #{node['fiware-idm'][:app_dir]} && \
     source /usr/local/bin/virtualenvwrapper.sh && \
     workon idm_tools && \
     fab keystone.install && \
@@ -59,6 +60,7 @@ end
 # Install Horizon frontend
 bash :install_horizon do
   code <<-EOH
+    cd #{node['fiware-idm'][:app_dir]} && \
     source /usr/local/bin/virtualenvwrapper.sh && \
     workon idm_tools && \
     fab horizon.install
@@ -67,8 +69,9 @@ end
 
 bash :run_entrypoint do
   code <<-EOH
-    cp docker-entrypoint.sh /docker-entrypoint.sh
-    chmod 755 /docker-entrypoint.sh
+    cd #{node['fiware-idm'][:app_dir]} && \
+    cp docker-entrypoint.sh /docker-entrypoint.sh && \
+    chmod 755 /docker-entrypoint.sh && \
     /docker-entrypoint.sh &&
   EOH
 end

@@ -1,6 +1,6 @@
 Description
 ===========
-A set of Chef Recipes for deploying ging projects
+A set of Chef Recipes for deploying GING projects
 
 Deployment/Testing
 ==================
