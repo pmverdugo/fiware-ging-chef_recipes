@@ -5,6 +5,7 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
 Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -12,7 +13,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty32"
+  config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,10 +70,10 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
-    chef.add_recipe "fiware-pep-proxy"
-    chef.add_recipe "fiware-cloud-portal"
-    chef.add_recipe "fiware-idm"
+    chef.cookbooks_path = 'cookbooks'
+    chef.add_recipe 'fiware-pep-proxy'
+    chef.add_recipe 'fiware-cloud-portal'
+    chef.add_recipe 'fiware-idm'
     chef.log_level = :debug
   end
 end
