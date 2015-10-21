@@ -11,7 +11,7 @@ bash :get_system do
   code <<-EOH
     cd /opt && \
     sudo git clone https://github.com/ging/fiware-cloud-portal.git && \
-    cd #{node['fiware-cloud-portal'][:app_dir]} && \
+    cd /opt/fiware-cloud-portal && \
     sudo mkdir $HOME/.npm && \
     sudo chown -R $(whoami) "$HOME/.npm" && \
     sudo npm install && \
