@@ -29,8 +29,9 @@ end
 # Download latest version of the code
 bash :download_version do
   code <<-EOH
-    git clone https://github.com/ging/fiware-idm #{node['fiware-idm'][:app_dir]} && \
-    cd #{node['fiware-idm'][:app_dir]} && \
+    cd /opt && \
+    git clone https://github.com/ging/fiware-idm && \
+    cd /opt/fiware-idm && \
     cp conf/settings.py.example conf/settings.py
   EOH
 end
@@ -38,7 +39,7 @@ end
 # Install python dependecies
 bash :install_pydeps do
   code <<-EOH
-    cd #{node['fiware-idm'][:app_dir]} && \
+    cd /opt/idm && \
     source /usr/local/bin/virtualenvwrapper.sh && \
     mkvirtualenv idm_tools && \
     pip install -r requirements.txt
