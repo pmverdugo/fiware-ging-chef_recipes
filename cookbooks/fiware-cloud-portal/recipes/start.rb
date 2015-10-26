@@ -17,4 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::0.0.1_install'
+
+bash 'start chef_validator' do
+  user 'root'
+  code <<-EOH
+    python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator
+  EOH
+end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: install
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -16,5 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+node.set['fiware-chef_validator']['version'] = '0.0.1'
 
-include_recipe 'fiware-chef_validator::0.0.1_install'
+include_recipe 'fiware-chef_validator::install'

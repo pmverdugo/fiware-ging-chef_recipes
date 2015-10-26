@@ -17,4 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::0.0.1_install'
+INSTALL_DIR = node['fiware-chef_validator'][:install_dir]
+ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}"
+
+execute 'start chef_validator' do
+  environment 'PYTHONPATH' => "#{INSTALL_DIR}/chef_validator:#{ENV['PYTHONPATH']}"
+  cwd "#{INSTALL_DIR}"
+  user 'root'
+  command 'python ./chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator'
+end

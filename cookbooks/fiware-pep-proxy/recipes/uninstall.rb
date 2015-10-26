@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: uninstall
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,4 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::0.0.1_install'
+package 'fiware-chef_validator' do
+  action :remove
+end
