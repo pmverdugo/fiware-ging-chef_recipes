@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: fiware-chef_validator
-# Recipe:: configure
+# Cookbook Name:: 
+# Recipe:: 
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -16,6 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-node.set['fiware-chef_validator']['version'] = '0.0.1'
 
-include_recipe 'fiware-chef_validator::configure'
+INSTALL_DIR = node['fiware-chef_validator'][:install_dir]
+
+file "#{INSTALL_DIR}/etc/chef_validator/chef_validator.conf" do
+  owner 'root'
+  group 'root'
+  mode 0755
+  content ::File.open("#{INSTALL_DIR}/etc/chef_validator/chef_validator.conf.sample").read
+  action :create
+end
