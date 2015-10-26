@@ -22,7 +22,7 @@ include_recipe 'fiware-chef_validator::configure'
 INSTALL_DIR = node['fiware-chef_validator'][:install_dir]
 ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}/chef_validator"
 
-execute 'start chef_validator' do
+bash 'start chef_validator' do
   environment 'PYTHONPATH' => "#{INSTALL_DIR}/chef_validator:#{ENV['PYTHONPATH']}"
   cwd "#{INSTALL_DIR}"
   user 'root'
