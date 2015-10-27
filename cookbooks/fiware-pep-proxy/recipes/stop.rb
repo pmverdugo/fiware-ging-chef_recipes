@@ -17,9 +17,8 @@
 # limitations under the License.
 #
 
-bash 'stop chef_validator' do
+execute 'stop pep-proxy' do
   user 'root'
-  code <<-EOH
-    pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator"
-  EOH
+  command "pkill -f 'sudo node server.js'"
+  ignore_failure true
 end

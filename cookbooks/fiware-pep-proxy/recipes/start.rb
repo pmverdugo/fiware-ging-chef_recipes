@@ -16,11 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+INSTALL_DIR = "#{node['fiware-pep-proxy'][:install_dir]}"
 
-
-bash 'start chef_validator' do
+execute 'start pep-proxy' do
   user 'root'
-  code <<-EOH
-    python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator
-  EOH
+  cwd INSTALL_DIR
+  command 'sudo node server.js &'
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: fiware-pep-proxy
-# Recipe:: stop
+# Cookbook Name:: 
+# Recipe:: 
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,4 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-pep-proxy::stop'
+INSTALL_DIR = node['fiware-pep-proxy'][:install_dir]
+
+file "#{INSTALL_DIR}/config.js" do
+  owner 'root'
+  group 'root'
+  mode 0755
+  content ::File.open("#{INSTALL_DIR}/config.js.template").read
+  action :create
+end

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-pep-proxy
 # Recipe:: configure
 #
 # Copyright 2015, GING, ETSIT, UPM

@@ -17,10 +17,8 @@
 # limitations under the License.
 #
 
-bash 'stop chef_validator' do
+execute 'stop chef_validator' do
   user 'root'
   ignore_failure true
-  code <<-EOH
-    pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator"
-  EOH
+  command 'pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator"'
 end

@@ -5,4 +5,3 @@ metadata
 cookbook "git"
 cookbook "apt"
 cookbook "build-essential"
-cookbook "poise-python"

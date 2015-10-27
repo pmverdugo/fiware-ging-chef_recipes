@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-pep-proxy
 # Recipe:: install
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -16,6 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-node.set['fiware-chef_validator']['version'] = '0.0.1'
+node.set['fiware-pep-proxy']['version'] = '0.0.1'
 
-include_recipe 'fiware-chef_validator::install'
+include_recipe 'fiware-pep-proxy::install'

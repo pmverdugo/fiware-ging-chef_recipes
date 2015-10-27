@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-pep-proxy
 # Recipe:: install
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -18,29 +18,27 @@
 #
 
 
-INSTALL_DIR = "#{node['fiware-chef_validator'][:install_dir]}"
+INSTALL_DIR = "#{node['fiware-pep-proxy'][:install_dir]}"
 
-include_recipe 'fiware-chef_validator::stop'
-include_recipe 'fiware-chef_validator::uninstall'
+include_recipe 'fiware-pep-proxy::stop'
+include_recipe 'fiware-pep-proxy::uninstall'
 
-python_runtime '2' do
-  version '2.7'
-  options :system, dev_package: true
-end
-
-# Checking OS compatibility for chef_validator
+# Checking OS compatibility for pep-proxy
 if node['platform'] != 'ubuntu'
   log '*** Sorry, but the chef validator requires a ubuntu OS ***'
 end
 return if node['platform'] != 'ubuntu'
 
 # Update the sources list
-execute 'apt-get update' do
-  action :run
+include_recipe 'apt'
+
+apt_repository 'node.js' do
+  uri 'ppa:chris-lea/node.js'
+  distribution node['lsb']['codename']
 end
 
 pkg_depends = value_for_platform_family(
-                  'ubuntu' => ['git' 'curl' 'nano' 'wget' 'dialog' 'net-tools' 'build-essential'],
+    'default' => %w(make g++ software-properties-common python-software-properties nodejs git)
 )
 
 pkg_depends.each do |pkg|
@@ -50,15 +48,18 @@ pkg_depends.each do |pkg|
 end
 
 git INSTALL_DIR do
-  repository 'https://github.com/ging/fi-ware-chef_validator'
-  reference 'docker-linux-install-511'
+  repository 'https://github.com/ging/fi-ware-pep-proxy'
   action :sync
   timeout 3600
 end
 
-python_pip INSTALL_DIR+'/requirements.txt' do
-  options '-r'
-  action :install
+
+execute 'install_node_modules' do
+  cwd INSTALL_DIR
+  user 'root'
+  action :run
+  command 'npm install'
 end
 
-include_recipe 'fiware-chef_validator::start'
+include_recipe 'fiware-pep-proxy::configure'
+include_recipe 'fiware-pep-proxy::start'

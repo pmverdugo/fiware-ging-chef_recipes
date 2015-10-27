@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-pep-proxy
 # Recipe:: uninstall
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::uninstall'
+include_recipe 'fiware-pep-proxy::uninstall'
