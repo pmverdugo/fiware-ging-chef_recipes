@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: default
 #
 # Copyright 2015, GING, ETSIT, UPM
 #

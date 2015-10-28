@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -26,5 +26,7 @@ bash 'start chef_validator' do
   environment 'PYTHONPATH' => "#{INSTALL_DIR}/chef_validator:#{ENV['PYTHONPATH']}"
   cwd "#{INSTALL_DIR}"
   user 'root'
-  command 'python ./chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator &'
+  code <<-EOH
+    python ./chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator &
+  EOH
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: stop
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -20,5 +20,7 @@
 execute 'stop chef_validator' do
   user 'root'
   ignore_failure true
-  command 'pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator"'
+  code <<-EOH
+    pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py"
+  EOH
 end

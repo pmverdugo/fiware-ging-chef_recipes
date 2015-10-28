@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-chef_validator
+# Recipe:: configure
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -19,10 +19,10 @@
 
 INSTALL_DIR = node['fiware-chef_validator'][:install_dir]
 
-file "#{INSTALL_DIR}/etc/chef_validator/chef_validator.conf" do
+## Creating fiware-chef_validator config file
+template "#{INSTALL_DIR}/etc/chef_validator/chef_validator.conf" do
+  source 'fiware-chef_validator.conf.erb'
   owner 'root'
   group 'root'
-  mode 0755
-  content ::File.open("#{INSTALL_DIR}/etc/chef_validator/chef_validator.conf.sample").read
-  action :create
+  mode  0755
 end

@@ -16,7 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe 'fiware-chef_validator::stop'
 
-package 'fiware-chef_validator' do
-  action :remove
+INSTALL_DIR = "#{node['fiware-chef_validator'][:install_dir]}"
+
+file INSTALL_DIR do
+  owner 'root'
+  group 'root'
+  action :delete
 end
