@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-pep-proxy
+# Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
 #

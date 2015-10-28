@@ -17,7 +17,13 @@
 # limitations under the License.
 #
 
-package 'fiware-pep-proxy' do
-  action :remove
+include_recipe 'fiware-pep-proxy::stop'
+
+INSTALL_DIR = "#{node['fiware-pep-proxy'][:install_dir]}"
+
+file INSTALL_DIR do
+  owner 'root'
+  group 'root'
+  action :delete
   ignore_failure true
 end

@@ -74,10 +74,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision :chef_zero do |chef|
     #chef.provisioning_path = '/var/chef'
     #chef.cookbooks_path = 'cookbooks'
-    chef.add_recipe 'fiware-pep-proxy'
+    # chef.add_recipe 'fiware-pep-proxy'
     # chef.add_recipe 'fiware-cloud-portal'
     # chef.add_recipe 'fiware-idm'
-    # chef.add_recipe 'fiware-chef_validator'
+    chef.add_recipe 'fiware-chef_validator'
     chef.log_level = :debug
   end
 end

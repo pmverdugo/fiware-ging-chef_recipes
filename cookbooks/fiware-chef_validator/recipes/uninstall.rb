@@ -24,4 +24,5 @@ file INSTALL_DIR do
   owner 'root'
   group 'root'
   action :delete
+  ignore_failure true
 end

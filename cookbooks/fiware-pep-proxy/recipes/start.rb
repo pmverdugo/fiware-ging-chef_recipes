@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-pep-proxy
+# Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -18,8 +18,10 @@
 #
 INSTALL_DIR = "#{node['fiware-pep-proxy'][:install_dir]}"
 
-execute 'start pep-proxy' do
+bash 'start pep-proxy' do
   user 'root'
   cwd INSTALL_DIR
-  command 'sudo node server.js &'
+  code <<-EOH
+    sudo node server.js &
+  EOH
 end

@@ -60,4 +60,6 @@ end
 
 pip_requirements INSTALL_DIR+'/requirements.txt'
 
+include_recipe 'fiware-chef_validator::configure'
+
 include_recipe 'fiware-chef_validator::start'
