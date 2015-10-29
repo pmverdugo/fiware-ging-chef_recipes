@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-cloud-portal
 # Recipe:: uninstall
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -17,6 +17,13 @@
 # limitations under the License.
 #
 
-package 'fiware-chef_validator' do
-  action :remove
+include_recipe 'fiware-cloud-portal::stop'
+
+INSTALL_DIR = "#{node['fiware-cloud-portal'][:install_dir]}"
+
+file INSTALL_DIR do
+  owner 'root'
+  group 'root'
+  action :delete
+  ignore_failure true
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: fiware-idm
-# Recipe:: start
+# Cookbook Name:: fiware-cloud-portal
+# Recipe:: configure
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,5 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-idm::start'
+INSTALL_DIR = node['fiware-cloud-portal'][:install_dir]
 
+file "#{INSTALL_DIR}/config.js" do
+  owner 'root'
+  group 'root'
+  mode 0755
+  content ::File.open("#{INSTALL_DIR}/config.js.template").read
+  action :create
+end

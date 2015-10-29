@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-idm
+# Recipe:: stop
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,9 +17,10 @@
 # limitations under the License.
 #
 
-bash 'stop chef_validator' do
+execute 'stop idm' do
   user 'root'
+  ignore_failure true
   code <<-EOH
-    pkill -f "python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator"
+    pkill -f "python /opt/fiware-idm/idm/cmd/chef-validator-api.py"
   EOH
 end

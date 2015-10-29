@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-idm
 # Recipe:: uninstall
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -16,7 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe 'fiware-idm::stop'
 
-package 'fiware-chef_validator' do
-  action :remove
+INSTALL_DIR = "#{node['fiware-idm'][:install_dir]}"
+
+file INSTALL_DIR do
+  owner 'root'
+  group 'root'
+  action :delete
+  ignore_failure true
 end

@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-cloud-portal
+# Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -16,11 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+INSTALL_DIR = "#{node['fiware-cloud-portal'][:install_dir]}"
 
-
-bash 'start chef_validator' do
+bash 'start cloud-portal' do
   user 'root'
+  cwd INSTALL_DIR
   code <<-EOH
-    python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator
+    node server.js &
   EOH
 end

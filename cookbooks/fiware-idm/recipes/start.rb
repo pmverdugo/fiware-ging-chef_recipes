@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: 
-# Recipe:: 
+# Cookbook Name:: fiware-idm
+# Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,10 +17,14 @@
 # limitations under the License.
 #
 
+INSTALL_DIR = node['fiware-idm'][:install_dir]
+ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}/idm"
 
-bash 'start chef_validator' do
+bash 'start idm' do
+  environment 'PYTHONPATH' => "#{INSTALL_DIR}/idm:#{ENV['PYTHONPATH']}"
+  cwd "#{INSTALL_DIR}"
   user 'root'
   code <<-EOH
-    python /opt/fiware-chef_validator/chef_validator/cmd/chef-validator-api.py --config-dir=etc/chef_validator
+    python ./idm/cmd/chef-validator-api.py --config-dir=etc/idm &
   EOH
 end

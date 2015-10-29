@@ -19,6 +19,6 @@
 
 execute 'stop pep-proxy' do
   user 'root'
-  command "pkill -f 'sudo node server.js'"
+  command "pkill -f 'node server.js'"
   ignore_failure true
 end

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-cloud-portal
 # Recipe:: start
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -17,5 +17,5 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::start'
+include_recipe 'fiware-cloud-portal::start'
 

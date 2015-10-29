@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-idm
 # Recipe:: stop
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-chef_validator::stop'
+include_recipe 'fiware-idm::stop'

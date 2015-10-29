@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: fiware-idm
-# Recipe:: start
+# Recipe:: configure
 #
 # Copyright 2015, GING, ETSIT, UPM
 #
@@ -17,5 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'fiware-idm::start'
+INSTALL_DIR = node['fiware-idm'][:install_dir]
 
+## Creating fiware-idm config file
+template "#{INSTALL_DIR}/etc/idm/idm.conf" do
+  source 'fiware-idm.conf.erb'
+  owner 'root'
+  group 'root'
+  mode  0755
+end

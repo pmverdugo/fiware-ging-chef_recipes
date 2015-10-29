@@ -22,6 +22,6 @@ bash 'start pep-proxy' do
   user 'root'
   cwd INSTALL_DIR
   code <<-EOH
-    sudo node server.js &
+    node server.js &
   EOH
 end

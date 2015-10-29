@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: fiware-chef_validator
+# Cookbook Name:: fiware-cloud-portal
 # Recipe:: configure
 #
 # Copyright 2015, GING, ETSIT, UPM
@@ -16,3 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+node.set['fiware-cloud-portal']['version'] = '0.0.1'
+
+include_recipe 'fiware-cloud-portal::configure'
