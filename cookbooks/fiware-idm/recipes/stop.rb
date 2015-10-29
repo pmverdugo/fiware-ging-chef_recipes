@@ -21,6 +21,6 @@ execute 'stop idm' do
   user 'root'
   ignore_failure true
   code <<-EOH
-    pkill -f "python /opt/fiware-idm/idm/cmd/chef-validator-api.py"
+    pkill -f "python /opt/"
   EOH
 end

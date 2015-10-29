@@ -25,6 +25,9 @@ bash 'start idm' do
   cwd "#{INSTALL_DIR}"
   user 'root'
   code <<-EOH
-    python ./idm/cmd/chef-validator-api.py --config-dir=etc/idm &
+    source /usr/local/bin/virtualenvwrapper.sh
+    workon idm_tools
+    fab keystone.dev_server &
+    fab horizon.dev_server
   EOH
 end

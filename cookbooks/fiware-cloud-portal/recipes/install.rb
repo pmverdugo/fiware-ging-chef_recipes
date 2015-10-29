@@ -52,7 +52,7 @@ gem_package 'sass' do
 end
 
 git INSTALL_DIR do
-  repository 'https://github.com/ging/fi-ware-cloud-portal'
+  repository 'https://github.com/ging/fiware-cloud-portal'
   action :sync
   timeout 3600
 end

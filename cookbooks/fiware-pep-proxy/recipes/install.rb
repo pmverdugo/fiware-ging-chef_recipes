@@ -48,7 +48,7 @@ pkg_depends.each do |pkg|
 end
 
 git INSTALL_DIR do
-  repository 'https://github.com/ging/fi-ware-pep-proxy'
+  repository 'https://github.com/ging/fiware-pep-proxy'
   action :sync
   timeout 3600
 end

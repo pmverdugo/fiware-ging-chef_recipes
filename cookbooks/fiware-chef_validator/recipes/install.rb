@@ -53,7 +53,7 @@ pkg_depends.each do |pkg|
 end
 
 git INSTALL_DIR do
-  repository 'https://github.com/ging/fi-ware-chef_validator'
+  repository 'https://github.com/ging/fiware-chef_validator'
   action :sync
   timeout 3600
 end

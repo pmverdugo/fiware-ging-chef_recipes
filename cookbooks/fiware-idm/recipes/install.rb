@@ -34,26 +34,18 @@ if node['platform'] != 'ubuntu'
 end
 return if node['platform'] != 'ubuntu'
 
+# fix source
+bash :fix_source do
+  code <<-EOH
+    rm /bin/sh && ln -s /bin/bash /bin/sh
+  EOH
+end
+
 # Update the sources list
 include_recipe 'apt'
 
-#
-# execute 'apt-get update' do
-#   action :run
-# end
-
-pkg_depends = value_for_platform_family(
-                  'default' => %w(git curl nano wget dialog net-tools build-essential)
-)
-
-pkg_depends.each do |pkg|
-  package pkg do
-    action :install
-  end
-end
-
 git INSTALL_DIR do
-  repository 'https://github.com/ging/fi-ware-idm'
+  repository 'https://github.com/ging/fiware-idm'
   action :sync
   timeout 3600
 end

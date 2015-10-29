@@ -20,9 +20,10 @@
 INSTALL_DIR = node['fiware-idm'][:install_dir]
 
 ## Creating fiware-idm config file
-template "#{INSTALL_DIR}/etc/idm/idm.conf" do
-  source 'fiware-idm.conf.erb'
+file "#{INSTALL_DIR}/conf/settings.py" do
   owner 'root'
   group 'root'
-  mode  0755
+  mode 0755
+  content ::File.open("#{INSTALL_DIR}/conf/settings.py.example").read
+  action :create
 end
