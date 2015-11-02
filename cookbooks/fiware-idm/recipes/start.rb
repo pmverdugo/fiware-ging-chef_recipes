@@ -18,10 +18,10 @@
 #
 
 INSTALL_DIR = node['fiware-idm'][:install_dir]
-ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}/idm"
+ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}"
 
 bash 'start idm' do
-  environment 'PYTHONPATH' => "#{INSTALL_DIR}/idm:#{ENV['PYTHONPATH']}"
+  environment 'PYTHONPATH' => "#{INSTALL_DIR}:#{ENV['PYTHONPATH']}"
   cwd "#{INSTALL_DIR}"
   user 'root'
   code <<-EOH

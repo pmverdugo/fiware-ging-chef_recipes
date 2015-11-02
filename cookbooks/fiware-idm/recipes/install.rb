@@ -18,31 +18,16 @@
 #
 
 
-INSTALL_DIR = "#{node['fiware-idm'][:install_dir]}"
+INSTALL_DIR = node['fiware-idm'][:install_dir]
 
 include_recipe 'fiware-idm::stop'
 include_recipe 'fiware-idm::uninstall'
 
-python_runtime '2' do
-  version '2.7'
-  options :system, dev_package: true
-end
-
 # Checking OS compatibility for idm
 if node['platform'] != 'ubuntu'
-  log '*** Sorry, but the chef validator requires a ubuntu OS ***'
+  log '*** Sorry, but the fiware idm requires a ubuntu OS ***'
 end
 return if node['platform'] != 'ubuntu'
-
-# fix source
-bash :fix_source do
-  code <<-EOH
-    rm /bin/sh && ln -s /bin/bash /bin/sh
-  EOH
-end
-
-# Update the sources list
-include_recipe 'apt'
 
 git INSTALL_DIR do
   repository 'https://github.com/ging/fiware-idm'
@@ -50,8 +35,24 @@ git INSTALL_DIR do
   timeout 3600
 end
 
+python_runtime '2' do
+  version '2.7'
+  options :system, dev_package: true
+end
+
+python_virtualenv INSTALL_DIR+'/idm_tools'
+
 pip_requirements INSTALL_DIR+'/requirements.txt'
 
 include_recipe 'fiware-idm::configure'
+
+bash 'fab_magic' do
+  user 'root'
+  cwd INSTALL_DIR+'/idm_tools'
+  code <<-EOH
+    fab keystone.install
+    fab horizon.install
+  EOH
+end
 
 include_recipe 'fiware-idm::start'

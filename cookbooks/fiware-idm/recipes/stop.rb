@@ -16,11 +16,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+INSTALL_DIR = node['fiware-idm'][:install_dir]
+ENV['PYTHONPATH'] = "#{ENV['PYTHONPATH']}:#{INSTALL_DIR}/idm"
 
-execute 'stop idm' do
+bash 'stop idm' do
+  environment 'PYTHONPATH' => "#{INSTALL_DIR}/idm:#{ENV['PYTHONPATH']}"
+  cwd "#{INSTALL_DIR}"
   user 'root'
   ignore_failure true
   code <<-EOH
-    pkill -f "python /opt/"
+    source /usr/local/bin/virtualenvwrapper.sh
+    workon idm_tools
+    fab horizon.stop
+    fab keystone.stop
   EOH
 end
