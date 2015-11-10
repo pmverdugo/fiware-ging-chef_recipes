@@ -70,14 +70,14 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   config.berkshelf.enabled = true
-  config.berkshelf.berksfile_path = 'cookbooks/fiware-idm/Berksfile'
+  config.berkshelf.berksfile_path = 'cookbooks/keyrock/Berksfile'
   config.vm.provision :chef_zero do |chef|
     #chef.provisioning_path = '/var/chef'
     #chef.cookbooks_path = 'cookbooks'
-    # chef.add_recipe 'fiware-pep-proxy'
-    # chef.add_recipe 'fiware-cloud-portal'
-    chef.add_recipe 'fiware-idm'
-    # chef.add_recipe 'fiware-chef_validator'
+    # chef.add_recipe 'wilma'
+    # chef.add_recipe 'cloud-portal'
+    chef.add_recipe 'keyrock'
+    # chef.add_recipe 'bork'
     chef.log_level = :debug
   end
 end

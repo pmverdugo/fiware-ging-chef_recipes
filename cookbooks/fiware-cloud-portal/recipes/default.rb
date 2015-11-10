@@ -1,1 +1,0 @@
-include_recipe 'fiware-cloud-portal::0.0.1_install'
