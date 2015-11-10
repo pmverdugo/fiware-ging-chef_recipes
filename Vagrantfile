@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   config.berkshelf.enabled = true
-  config.berkshelf.berksfile_path = 'cookbooks/keyrock/Berksfile'
+  config.berkshelf.berksfile_path = 'cookbooks/keyrock.bak/Berksfile'
   config.vm.provision :chef_zero do |chef|
     #chef.provisioning_path = '/var/chef'
     #chef.cookbooks_path = 'cookbooks'
