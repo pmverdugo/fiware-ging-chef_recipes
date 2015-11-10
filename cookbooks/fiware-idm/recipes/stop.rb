@@ -25,9 +25,8 @@ bash 'stop idm' do
   user 'root'
   ignore_failure true
   code <<-EOH
-    source /usr/local/bin/virtualenvwrapper.sh
-    workon idm_tools
-    fab horizon.stop
-    fab keystone.stop
+    source idm_tools/bin/activate
+    fab horizon.stop &
+    fab keystone.stop &
   EOH
 end

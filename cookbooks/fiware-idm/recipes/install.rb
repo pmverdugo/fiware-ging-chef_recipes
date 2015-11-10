@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-
+include_recipe 'git::default'
 INSTALL_DIR = node['fiware-idm'][:install_dir]
 
 include_recipe 'fiware-idm::stop'
@@ -29,29 +29,40 @@ if node['platform'] != 'ubuntu'
 end
 return if node['platform'] != 'ubuntu'
 
+package 'git' do
+  action :install
+end
+
 git INSTALL_DIR do
   repository 'https://github.com/ging/fiware-idm'
   action :sync
   timeout 3600
+  user 'root'
 end
+
+include_recipe 'fiware-idm::configure'
 
 python_runtime '2' do
   version '2.7'
   options :system, dev_package: true
 end
 
-python_virtualenv INSTALL_DIR+'/idm_tools'
+python_virtualenv INSTALL_DIR+'idm_tools' do
+  user 'root'
+  path INSTALL_DIR+'/idm_tools'
+end
 
-pip_requirements INSTALL_DIR+'/requirements.txt'
-
-include_recipe 'fiware-idm::configure'
+pip_requirements INSTALL_DIR+'/requirements.txt' do
+  virtualenv INSTALL_DIR+'idm_tools'
+end
 
 bash 'fab_magic' do
   user 'root'
-  cwd INSTALL_DIR+'/idm_tools'
+  cwd INSTALL_DIR
   code <<-EOH
-    fab keystone.install
-    fab horizon.install
+    source idm_tools/bin/activate
+    fab keystone.install &
+    fab horizon.install &
   EOH
 end
 

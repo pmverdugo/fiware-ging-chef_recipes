@@ -1,8 +1,7 @@
-name 'fiware-idm'
-version '1.0.0'
+name              'fiware-idm'
 maintainer        'GING-DIT-ETSIT-UPM'
 maintainer_email  'ging@dit.upm.es'
-description       'A cookbook for deploying the fiware-chef_validator component'
+description       'A cookbook for deploying the fiware-idm component'
 version           '0.0.1'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 

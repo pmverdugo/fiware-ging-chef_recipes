@@ -25,9 +25,8 @@ bash 'start idm' do
   cwd "#{INSTALL_DIR}"
   user 'root'
   code <<-EOH
-    source /usr/local/bin/virtualenvwrapper.sh
-    workon idm_tools
+    source idm_tools/bin/activate
     fab keystone.dev_server &
-    fab horizon.dev_server
+    fab horizon.dev_server &
   EOH
 end
